@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Eclipse IDE
+Comment=IDE for Java Development
+Icon=/usr/share/icons/eclipse.png
+Exec=sommelier -X env GTK_IM_MODULE=cros $HOME/eclipse/eclipse
+StartupWMClass=Eclipse
+Type=Application
+Terminal=false
+Encoding=UTF-8
+Version=1.1
+Categories=IDE;Eclipse;
