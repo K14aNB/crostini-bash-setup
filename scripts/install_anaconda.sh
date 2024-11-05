@@ -32,7 +32,7 @@ while getopts "hv:" flags; do
     esac
 done
 
-shift $((OPTIND - 1))
+shift $(( OPTIND - 1 ))
 
 # If -v or --anaconda-version flag is not provided, then download the latest version
 if [ -z "$ANACONDA_VERSION" ]; then
