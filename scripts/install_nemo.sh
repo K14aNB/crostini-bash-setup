@@ -2,10 +2,10 @@
 
 # Check if Nemo File Manager is already installed
 if apt-cache policy nemo | grep -q "100 /var/lib/dpkg/status"; then
-    echo "Nemo File Manager is already installed"
+    echo "nemo is already installed"
+    exit 0
 else
-    echo "Nemo File Manager is not installed"
-    echo "Installing Nemo File Manager"
+    echo "Installing nemo"
     # Install Nemo File Manager
     sudo apt install nemo -y
 fi
