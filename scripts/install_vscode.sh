@@ -1,13 +1,23 @@
 #!/bin/bash
 
+source ./configs.cfg
+
+# Check if VS Code is already installed
+if apt-cache policy code | grep -q "100 /var/lib/dpkg/status"; then
+    echo "code is already installed"
+    exit 0
+else
+    echo "Installing code"
+fi
+
 # Check if current system is Debian based (Debian, Ubuntu) or RPM based (Fedora, RHEL)
 if cat /etc/os-release | grep -qe "ID=debian" -e "ID=Ubuntu"; then
     
     echo "Installing on Debian based distribution"
     # Check and Install dependencies
-    DEPS_LIST=("wget" "gpg" "apt-transport-https")
+    DEB_DEPS_LIST="$VSCODE_DEB_DEPS"
     DEPS_FAILED=0
-    for dep in "${DEPS_LIST[@]}"; do
+    for dep in "${DEB_DEPS_LIST[@]}"; do
         if apt-cache policy "$dep" | grep -q "100 /var/lib/dpkg/status"; then
             echo "Dependency - $dep is already installed"
         else
@@ -16,7 +26,7 @@ if cat /etc/os-release | grep -qe "ID=debian" -e "ID=Ubuntu"; then
                 echo "Dependency - $dep installed successfully"
             else
                 echo "Dependecy - $dep installation failed"
-                DEPS_FAILED=$((DEPS_FAILED + 1))
+                DEPS_FAILED=$(( DEPS_FAILED + 1 ))
             fi
         fi
     done
@@ -55,7 +65,7 @@ if cat /etc/os-release | grep -qe "ID=debian" -e "ID=Ubuntu"; then
 
     # Remove existing code.desktop file, if existing
     if [ -f /usr/share/applications/code.desktop ]; then
-        echo "code.desktop file is already present in ~/.local/share/applications"
+        echo "code.desktop file is already present in /usr/share/applications"
         echo "Removing /usr/share/applications/code.desktop"
         sudo rm /usr/share/applications/code.desktop
         if [ -f /usr/share/applications/code.desktop ]; then
@@ -82,13 +92,8 @@ if cat /etc/os-release | grep -qe "ID=debian" -e "ID=Ubuntu"; then
     sudo cp ./files/code.desktop /usr/share/applications/
 
     # Modify File permissions of /usr/share/applications/code.desktop to make it accessible to Launcher
-    sudo chmod 644 /usr/share/applications/code.
+    sudo chmod 644 /usr/share/applications/code.desktop
     
-    # Move the code.desktop file to refresh icon cache
-    sudo mv /usr/share/applications/code.desktop ~
-    sleep 5
-    sudo mv ~/code.desktop /usr/share/applications
-
     if [ -f /usr/share/applications/code.desktop ]; then
         echo "VS Code desktop entry updated"
         exit 0
