@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Check if pomatez is already installed
+if apt-cache policy pomatez | grep -q "100 /var/lib/dpkg/status"; then
+    echo "pomatez is already installed"
+    exit 0
+else
+    echo "Installing pomatez"
+fi
+
 # Initialize variables
 POMATEZ_VERSION=""
 
