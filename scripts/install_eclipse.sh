@@ -65,10 +65,10 @@ sudo chmod 644 /usr/share/icons/eclipse.png
 # Create applications directory, if not exists
 # mkdir -p ~/.local/share/applications
 
-# Remove the existing epp.package.java.desktop file, if present
-echo "Checking if epp.package.java.desktop is already present in /usr/share/applications or .local/share/applications"
+# Remove the existing desktop file, if present
+echo "Checking if epp.package.java.desktop is already present"
 if [ -f /usr/share/applications/epp.package.java.desktop ]; then
-    echo "epp.package.java.desktop is already present in /usr/share/applications"
+    echo "/usr/share/applications/epp.package.java.desktop is already present"
     echo "Removing /usr/share/applications/epp.package.java.desktop"
     sudo rm /usr/share/applications/epp.package.java.desktop
     if [ -f /usr/share/applications/epp.package.java.desktop ]; then
@@ -79,7 +79,7 @@ if [ -f /usr/share/applications/epp.package.java.desktop ]; then
     fi
 
 elif [  -f ~/.local/share/applications/epp.package.java.desktop ]; then
-    echo "epp.package.java.desktop is already present in ~/.local/share/applications"
+    echo "~/.local/share/applications/epp.package.java.desktop is already present"
     echo "Removing ~/.local/share/applications/epp.package.java.desktop"
     rm ~/.local/share/applications/epp.package.java.desktop
     if [ -f ~/.local/share/applications/epp.package.java.desktop ]; then
