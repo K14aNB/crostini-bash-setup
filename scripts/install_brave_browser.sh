@@ -3,6 +3,14 @@
 # Read Dependencies from Config file
 source configs.cfg
 
+# Check if Brave Browser is already installed
+if apt-cache policy brave-browser | grep -q "100 /var/lib/dpkg/status"; then
+    echo "brave-browser is already installed"
+    exit 0
+else
+    echo "Installing brave-browser"
+fi
+
 # Check if current system is Debian based (Debian, Ubuntu) or RPM based (Fedora, RHEL)
 if cat /etc/os-release | grep -qe "ID=debian" -e "ID=Ubuntu"; then
     
