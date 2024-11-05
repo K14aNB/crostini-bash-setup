@@ -30,6 +30,15 @@ bash ./scripts/install_brave_browser.sh
 # Install Pomatez
 bash ./scripts/install_pomatez.sh --pomatez-version "$POMATEZ_VERSION"
 
+# Install Virt Manager
+bash ./scripts/install_virt_manager.sh
+
+# Install Docker
+bash ./scripts/install_docker.sh
+
+# Install Dbeaver Community Edition
+bash ./scripts/install_dbeaver.sh
+
 # Install Fonts
 bash ./scripts/install_fonts.sh
 
